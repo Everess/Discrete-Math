@@ -1,0 +1,155 @@
+<!doctype html> 
+<html> 
+<head>
+	<meta charset="UTF-8" />
+	<title> 
+		ДМ пр. 1
+	</title> 
+	<h1 align="center">Сортировка</h1> 
+</head> 
+<body> 
+	<script> 
+		/*
+		*OutText - ф-я вывода двух массивов
+		*
+		*Выводим массив до сортировки и после.
+		*
+		*@param m1 - document.getElementById("arr1").value - первый массив
+		*@param m2 - document.getElementById("arr2").value - второй массив
+		*Символ | выполняет функцию разделителя.
+		*
+		*/
+		function OutText(){ 
+			var m1 = document.getElementById("arr1").value; 
+			var m2 = document.getElementById("arr2").value; 
+			m1 = m1.split("|"); 
+			m2 = m2.split("|"); 
+			document.getElementById("result").innerHTML += m1+"<br/>" 
+			document.getElementById("result").innerHTML += m2+"<br/>" 
+			m1 = Sort(m1); 
+			document.getElementById("res").innerHTML += m1+"<br/>" 
+			m2 = Sort(m2); 
+			document.getElementById("res").innerHTML += m2+"<br/>" 
+		} 
+
+		/*
+		*Sort - ф-я сортирует массив по возрастанию
+		*
+		*Если встречается элемент, который больше следующего, то меняем их местами
+		*return mass возвращает отсортированный массив
+		*
+		*/
+		function Sort(mass){ 
+			for(var i = mass.length - 1; i > 0; i--) { 
+				for(var j = 0; j < i; j++) { 
+					if(mass[j] > mass[j+1]) { 
+						var tmp = mass[j]; 
+						mass[j] = mass[j+1]; 
+						mass[j+1] = tmp; 
+					} 
+				} 
+			} 
+			return mass; 
+		}
+
+	</script> 
+</body> 
+	<form> 
+		Введите массив 1 
+		<input type="text" name="array1" id="arr1"><br> 
+		Введите массив 2 
+		<input type="text" name="array2" id="arr2"><br> 
+		<input type="button" value="Отправить" onClick="OutText()"> 
+	</form><br /> 
+	До сортировки: <br />
+	<div id="result"></div> 
+	После сортировки: <br />
+	<div id="res"></div> 
+</html>
+
+<!--
+
+<document HTML> 
+	<html> 
+	<head> 
+		<title> Работа 2 </title> 
+
+
+		<script> 
+/** 
+*calendar - функция преобразования строки в двумерный массив 
+* 
+*Вводим данные месяца и выбранного дня 
+*@param month - document.getElementById("month").value - входной парметр для месяца 
+*@param number - document.getElementById("number").value - входной параметр для дня 
+* 
+*Вывод матрицы происходит в зависимости от выбранного значения месяца 
+*@rerurn document.getElementById("result").innerHTML = out - возвращает получнный массив значений 
+* 
+*/ 
+function calendar() { 
+	var month = document.getElementById("month").value; 
+	var number = document.getElementById("number").value; 
+	if (month == 2) { 
+		var qrtDay = 28; 
+	} 
+	if (month <= 7 && month != 2) { 
+		var qrtDay = (month % 2 == 0)? 30 : 31; 
+	} 
+
+	if (month >= 8 && month != 2) { 
+		var qrtDay = (month % 2 ==0)? 31: 30; 
+	} 
+
+	var out = ""; 
+	for (var i = 1; i <= qrtDay; i++) { 
+		if (i < 10 && i != 0) { 
+			out += "&nbsp;&nbsp;&nbsp;"; 
+		} else { 
+			out += "&nbsp;"; 
+		} 
+		if (i == number) { 
+			if ((number + 1) % 7 == 0 || number % 7 == 0) { 
+				out += "<span class= 'num2'>" + i + "</span>"; 
+			} else { 
+				out += "<span class= 'num1'>" + i + "</span>"; 
+			} 
+		} else { 
+			out += "<span class='"+(((i + 1) % 7 == 0 || i % 7 == 0)?"wek":"")+"'>" + i + "</span>"; 
+		} 
+		if (i%7 == 0) { 
+			out += "</br>"; 
+		} 
+	} 
+	return document.getElementById("result").innerHTML = out; 
+} 
+</script> 
+<style> 
+.wek { 
+	font-weight: bold; 
+} 
+.num2{ 
+	color: red; 
+	font-weight: bold; 
+} 
+.num1{ 
+	color: red; 
+} 
+
+</style> 
+</head> 
+<body> 
+	<form> 
+		<input type="text" id="month"> Месяц <br> 
+		<input type="text" id="number"> День <br> 
+		<input type="button" value="Вывести" onClick = "calendar()"> <br> 
+	</form> 
+Вывод результата </br> 
+<div id="result"> 
+</div> 
+</body> 
+
+
+</html>
+
+--!>
