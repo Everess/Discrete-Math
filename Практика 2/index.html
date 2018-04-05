@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Calendar</title>
+	<script>
+		function createCalendar()
+		{
+			var countDay = document.getElementById("mounth").value;
+			var selectDay = document.getElementById("day").value;
+			var Out = "";
+			for(var i=1; i<=countDay; i++)
+			{
+				if(i<10)
+					Out += "&nbsp;&nbsp;";
+					Out += "&nbsp;&nbsp;<span class='"+((((i+1)%7==0 || i%7==0) && (i==selectDay))?"wik light":((i+1)%7==0 || i%7==0)?"wik":(i==selectDay)?"light":"")+"'>"+i+"</span>";
+				if(i%7 == 0)
+					Out += "<br />";
+			}
+			document.getElementById("result").innerHTML = Out;
+		}
+	</script>
+	<style>
+		.wik 
+		{
+			font-weight: bold;
+		}
+
+		.light 
+		{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<h1 align="center">My calendar</h1>
+	<div class="myForm">
+		<form>
+			Введите количество дней:
+			<input type="text" name="mounth" id="mounth"><br>
+			Введите день для подсветки:
+			<input type="text" name="day" id="day"><br>
+			<input type="button" onClick="createCalendar()" value="Отправить"><br><br><br>
+		</form>
+	</div>
+	Результат:<br />
+	<div id="result">
+
+
+	</div>
+</body>
+</html>
